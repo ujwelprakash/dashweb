@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bank Dashboard</title>
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="main-container">
+    <div class="top-bar"></div>
+
+    <!-- Header -->
+    <div class="header-section">
+  <div class="d-flex align-items-center">
+    <button class="btn d-lg-none toggle-sidebar-btn me-2">
+      <i class="bi bi-list fs-3"></i>
+    </button>
+    <img src="image/logo.png" alt="Logo" class="logo-img" />
+  </div>
+  <input type="search" class="custom-search ms-auto me-5" placeholder="Search here....." />
+  <div class="profile d-flex align-items-center">
+    <img src="image/notification.png" alt="Notifications" class="icon-img me-3" />
+    <span class="me-2">Manish Kumar</span>
+    <img src="image/profile.png" alt="Profile" class="profile-img" />
+  </div>
+</div>
+
+
+    <div class="main-body">
+      <!-- Sidebar -->
+    <div class="sidebar d-flex flex-column" id="sidebar">
+  <nav class="nav flex-column">
+    <a class="nav-link active" href="#"><img src="image/dashboard.png" class="sidebar-icon me-2" />DASHBOARD</a>
+    <a class="nav-link" href="#"><img src="image/account.png" class="sidebar-icon me-2" />ACCOUNT</a>
+    <a class="nav-link" href="#"><img src="image/payments.png" class="sidebar-icon me-2" />PAYMENTS</a>
+    <a class="nav-link" href="#"><img src="image/cards.png" class="sidebar-icon me-2" />CARDS</a>
+    <a class="nav-link" href="#"><img src="image/investment.png" class="sidebar-icon me-2" />INVESTMENT</a>
+    <a class="nav-link" href="#"><img src="image/service.png" class="sidebar-icon me-2" />SERVICE</a>
+  </nav>
+  <button class="btn btn-sm logout-btn mt-auto">Logout</button>
+</div>
+
+
+      <!-- Content -->
+      <div class="content-area">
+        <!-- Top Card -->
+        <div class="card p-3 mb-4">
+          <div class="row g-4 align-items-center">
+            <div class="col-md-3">
+              <small class="text-muted">31145500XXXXXXXX <i class="bi bi-eye-slash ms-1"></i></small><br>
+              <strong class="account-label d-block">Account Balance</strong>
+              <span class="account-label">₹ XXXX.XX <i class="bi bi-eye-slash ms-1"></i></span>
+            </div>
+            <div class="col-md-3">
+              <input type="text" class="form-control custom-input" placeholder="Account Number">
+            </div>
+            <div class="col-md-3">
+              <input type="text" class="form-control custom-input" placeholder="Amount">
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-primary custom-btn">Quick Transfer</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts & Summary -->
+        <div class="row g-4 mb-4 align-items-stretch">
+          <!-- Chart -->
+          <div class="col-md-8 d-flex">
+            <div class="card p-3 w-100">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <h6 class="mb-0 fw-bold">Money Flow</h6>
+                <div class="d-flex flex-column align-items-end">
+                  <span class="badge custom-lightblue-badge text-white badge-fixed px-3 py-2 rounded-3 mb-1">Credit 1.5 L</span>
+                  <span class="badge bg-light custom-lightgray-badge border text-dark badge-fixed px-3 py-2 rounded-3">Debit 1.45 L</span>
+                </div>
+              </div>
+              <div style="position: relative; height: 350px;">
+                <canvas id="moneyFlowChart" height="350"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Summary -->
+          <div class="col-md-4 d-flex">
+            <div class="card p-3 text-center w-100">
+              <div id="summaryChartContainer">
+                <canvas id="summaryChart" width="250" height="250"></canvas>
+                <div id="summaryCenterText">Account<br>Summary</div>
+              </div>
+              <ul class="sdlmoney list-unstyled d-flex justify-content-around mt-3 mb-2 small">
+                <li><strong>Saving:</strong><br>₹ 5000.00</li>
+                <li><strong>Deposit:</strong><br>₹ 15000.00</li>
+                <li><strong>Loan:</strong><br>₹ 1000.00</li>
+              </ul>
+              <br/>
+              <small class="text-muted">Last Logged In: Sep 2 2023 5.35 pm</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transactions Table -->
+        <div class="card p-3">
+          <h6 class="fw-bold mb-3">Transactions</h6>
+          <div class="table-responsive">
+            <table class="table align-middle small">
+              <thead class="table-light">
+                <tr class="text-secondary">
+                  <th>Transaction Date</th>
+                  <th>Cheque Number</th>
+                  <th>Transaction ID</th>
+                  <th>Withdrawal Amount</th>
+                  <th>Deposit Amount</th>
+                  <th>Balance</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody class="border-top">
+                <tr>
+                  <td>Sep 2 2023<br><small>5.40 pm</small></td>
+                  <td>-</td>
+                  <td>BLD / 5045548641546</td>
+                  <td>₹ 10000</td>
+                  <td>-</td>
+                  <td>₹ 5000</td>
+                  <td><button class="btn btn-sm p-0"><img src="image/up.png" width="25"></button></td>
+                </tr>
+                <tr>
+                  <td>Sep 2 2023<br><small>8.50 am</small></td>
+                  <td>1755168652</td>
+                  <td>SDS / 6045548641546</td>
+                  <td>-</td>
+                  <td>₹ 15000</td>
+                  <td>₹ 15000</td>
+                  <td><button class="btn btn-sm p-0"><img src="image/down.png" width="25"></button></td>
+                </tr>
+                <tr>
+                  <td>Sep 2 2023<br><small>2.00 pm</small></td>
+                  <td>-</td>
+                  <td>SAW / 3045546641546</td>
+                  <td>₹ 1000</td>
+                  <td>-</td>
+                  <td>₹ 1000</td>
+                  <td><button class="btn btn-sm p-0"><img src="image/up.png" width="25"></button></td>
+                </tr>
+                <tr>
+                  <td>Sep 2 2023<br><small>9.30 pm</small></td>
+                  <td>-</td>
+                  <td>SAS / 7045546641546</td>
+                  <td>₹ 500</td>
+                  <td>-</td>
+                  <td>₹ 1500</td>
+                  <td><button class="btn btn-sm p-0"><img src="image/up.png" width="25"></button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="text-end">
+            <button class="btn btn-outline-danger btn-sm px-4 fw-semibold">Statement &gt;&gt;&gt;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Chart & jQuery -->
+  <script>
+    // Line chart (money flow)
+    const ctx = document.getElementById("moneyFlowChart").getContext("2d");
+    const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient.addColorStop(0, 'rgba(96, 179, 247, 0.4)');
+    gradient.addColorStop(1, 'rgba(96, 179, 247, 0)');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+        datasets: [{
+          label: 'Money Flow',
+          data: [10000, 18000, 15000, 25000, 28000, 22000, 26000, 22000, 8000],
+          borderColor: '#b40000',
+          backgroundColor: gradient,
+          borderWidth: 3,
+          tension: 0.4,
+          fill: true,
+          pointRadius: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: { padding: { top: 25, right: 60, left: 10, bottom: 0 } },
+        scales: {
+          y: {
+            min: 0,
+            max: 55000,
+            ticks: {
+              stepSize: 5000,
+              callback: value => [10000, 25000, 50000].includes(value) ? value / 1000 + 'K' : '',
+              font: { size: 13, weight: '500' },
+              color: '#666'
+            },
+            grid: { drawTicks: false, drawBorder: false, color: '#ddd' }
+          },
+          x: {
+            ticks: { font: { size: 13, weight: '500' }, color: '#666' },
+            grid: { color: '#ddd', drawTicks: false, drawBorder: false }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: true }
+        }
+      },
+      plugins: [{
+        id: 'custom1kLabel',
+        afterDraw(chart) {
+          const ctx = chart.ctx;
+          const yAxis = chart.scales.y;
+          const x = chart.chartArea.left - 22;
+          const y = yAxis.getPixelForValue(1000) + 12;
+          ctx.save(); ctx.font = "13px 'Segoe UI'"; ctx.fillStyle = "#666";
+          ctx.fillText("1K", x, y); ctx.restore();
+        }
+      }, {
+        id: 'borderBox',
+        beforeDraw(chart) {
+          const ctx = chart.ctx;
+          const area = chart.chartArea;
+          ctx.save(); ctx.strokeStyle = '#ccc'; ctx.lineWidth = 1;
+          ctx.strokeRect(area.left, area.top, area.right - area.left, area.bottom - area.top);
+          ctx.restore();
+        }
+      }]
+    });
+
+    // Doughnut chart
+    const summaryCtx = document.getElementById("summaryChart").getContext("2d");
+    new Chart(summaryCtx, {
+      type: "doughnut",
+      data: {
+        labels: ["Deposit", "Saving", "Loan"],
+        datasets: [{
+          data: [15000, 5000, 1000],
+          backgroundColor: ["#60B3F7", "#2C3E50", "#E74C3C"],
+          borderWidth: 0,
+        }]
+      },
+      options: {
+        cutout: "70%",
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: true }
+        }
+      }
+    });
+
+    // jQuery functionality
+    $(document).ready(function () {
+      $('.custom-search').on('focus', function () {
+        $(this).css('box-shadow', '0 0 5px #60B3F7');
+      }).on('blur', function () {
+        $(this).css('box-shadow', 'none');
+      });
+
+      $('.sidebar .nav-link').hover(
+        function () {
+          $(this).css('background-color', '#d0e6fb');
+        },
+        function () {
+          if (!$(this).hasClass('active')) {
+            $(this).css('background-color', '');
+          }
+        }
+      );
+
+      $('.logout-btn').on('click', function (e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to logout?')) {
+          alert('Logged out successfully!');
+        }
+      });
+
+      $('table tbody tr').hover(
+        function () {
+          $(this).css('background-color', '#f0f8ff');
+        },
+        function () {
+          $(this).css('background-color', '#fff');
+        }
+      );
+    });
+
+    // Sidebar toggle for small screens
+$('.toggle-sidebar-btn').on('click', function () {
+  $('#sidebar').toggleClass('show-sidebar');
+  $('#sidebarOverlay').toggleClass('active');
+});
+
+// Hide sidebar when clicking outside
+$('#sidebarOverlay').on('click', function () {
+  $('#sidebar').removeClass('show-sidebar');
+  $(this).removeClass('active');
+});
+
+
+  </script>
+</body>
+</html>
+
